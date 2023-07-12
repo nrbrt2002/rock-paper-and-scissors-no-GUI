@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rock paper scissors</title>
+</head>
+<body>
+ 
+<script>
+    let playerScore = 0;
+    let computerScore = 0;
+    function getComputerChoice (){
+        const ComputerChoices = ['rock', 'paper', 'scissors'];
+        const RandomNumber = Math.floor(Math.random() * 3);
+        return ComputerChoices[RandomNumber];
+    }
+
+    function playerRound(playerSelection, computerSelection){
+        if(playerSelection === computerSelection){
+            return(`It's a tie, Both picked ${playerSelection}`);
+        }else if(playerSelection === 'scissors' && computerSelection === 'paper'){
+            playerScore++;
+            return("You Win! , scissors Beats paper");
+        }else if(playerSelection === 'paper' && computerSelection === 'rock'){
+            playerScore++;
+            return("You Win! , paper Beats rock");
+        }else if(playerSelection === 'rock' && computerSelection === 'scissors'){
+            playerScore++;
+            return("You Win! , rock Beats scissors");
+        }else if(playerSelection === 'scissors' && computerSelection === 'rock'){
+            computerScore++;
+            return("You Loss! , rock Beats scissors");
+        }else if(playerSelection === 'rock' && computerSelection === 'paper'){
+            computerScore++;
+            return("You Loss! , paper Beats rocks");
+        }else if(playerSelection === 'paper' && computerSelection === 'scissors'){
+            computerScore++;
+            return("You Loss! , scissors Beats paper");
+        }
+    }
+    
+    function game(){
+        for (let i = 0; i < 5; i++) {
+           const playerSelection = prompt('Write youe choice!').toLowerCase();
+           const computerSelection = getComputerChoice();
+           console.log(playerRound(playerSelection, computerSelection));           
+        }
+
+        if(computerScore > playerScore){
+            return `Computer Wins! ${computerScore} - ${playerScore}`;
+        }else if(computerScore < playerScore){
+            return `Player Wins! ${playerScore} - ${computerScore}`;
+        }else{
+            return `Non Wins! ${computerScore} - ${playerScore}`;
+        }
+    }
+console.log(game());
+
+</script>
+</body>
+</html>
